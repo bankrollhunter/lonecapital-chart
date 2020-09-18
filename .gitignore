@@ -1,0 +1,6 @@
+.idea/
+log/
+dist/
+rpmbuild/
+.DS_Store
+local*.yaml
