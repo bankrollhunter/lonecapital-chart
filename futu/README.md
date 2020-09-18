@@ -72,3 +72,10 @@ EMA2:EMA(CLOSE,P2), COLORYELLOW;
 EMA3:EMA(CLOSE,P3), COLORE970DC;
 EMA4:EMA(CLOSE,P4), COLOR0080FF;
 ```
+
+![Mobile](/futu/Mobile.jpg)
+
+![PC](/futu/PC.jpg)
+
+ 有任何问题请点击[这里](https://github.com/kentio/lonecapital-chart/issues/new)
+ 
