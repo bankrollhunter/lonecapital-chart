@@ -4,6 +4,10 @@
 - [tradingview](/tradingview)
 - [Futu](/futu)
 
+![Mobile](/futu/Mobile.jpg)
+
+![PC](/futu/PC.jpg)
+
 >Futu版本进行了颜色的修改，自定义颜色可以参考下面的链接
 
 ## 颜色对照参考
