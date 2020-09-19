@@ -1,6 +1,6 @@
 # FUTU
 
->PC和MOB区别：由于手机查看的时候线条太多，MOB方案去掉了SMA线。
+>PC和MOB区别：由于手机查看的时候线条太多，MOB方案去掉了SMA线。建议使用文件的方式。
 
 富途可以通过两种方式自定义指标; 
 
@@ -13,7 +13,7 @@
    1. 下载自定义的指标文件（链接见下方）;
    2. 导入自定义的指标文件即可;
 
-## 参数设置
+## 参数设置（均线）
 > 仅自行COPY CODE设置
 
 | 参数名| 默认值 | 最大值 | 最小值 |
@@ -25,9 +25,18 @@
 
 ## 文件导入
 - [PC](/futu/PC.ftindex)
-- [MOB](/futu/MOB.ftindex)
+- [MOB 去掉了SMA线](/futu/MOB.ftindex)
+- [乖离率20](/futu/GL20.ftindex)
 
-## PC
+
+## GLL 乖离率
+```text
+CS:(CLOSE-MA(CLOSE,20))/MA(CLOSE,20)*100,LINETHICK1,COLORFF8D1E;
+SM:(MA(CLOSE,20)-MA(CLOSE,60))/MA(CLOSE,P2)*100,LINETHICK1,COLOR0CAEE6;
+ML:(MA(CLOSE,60)-MA(CLOSE,120))/MA(CLOSE,P3)*100,COLORSTICK;
+```
+
+## 双均线PC版
 ```text
 W1:=REF(CLOSE,P1);
 W2:=REF(CLOSE,P2);
@@ -51,7 +60,7 @@ EMA3:EMA(CLOSE,P3), COLORFFAEC9;
 EMA4:EMA(CLOSE,P4), COLORBLUE;
 ```
 
-## MOB
+## 双均线MOB版
 Mobile
 ```text
 W1:=REF(CLOSE,P1);
