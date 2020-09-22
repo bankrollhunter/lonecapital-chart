@@ -27,15 +27,6 @@ x120=input(120)+moveBar
 plot(cond?low[20]:na,color=#FFC40C,linewidth=5,offset=-x20,style=plot.style_circles,transp=0)
 plot(cond?low[60]:na,color=#FFC40C,linewidth=5,offset=-x60,style=plot.style_circles,transp=0)
 plot(cond?low[120]:na,color=#FFC40C,linewidth=5,offset=-x120,style=plot.style_circles,transp=0)
-
-// GLL
-study("Price divergence")
-cs=(close-ema(close,20))/ema(close,20)*100 
-sm=(ema(close,20)-ema(close,60))/ema(close,60)*100
-ml=(ema(close,60)-ema(close,120))/ema(close,120)*100
-plot(ml,"ml",color.silver,linewidth=3,style=plot.style_histogram)
-plot(sm,"sm",color.red)
-plot(cs,"cs",color.black)
 ```
 
 ## 乖离率

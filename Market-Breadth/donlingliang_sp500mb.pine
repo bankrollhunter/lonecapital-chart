@@ -1,0 +1,120 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Don
+
+//@version=4
+// The maximum number of securities in script is limited to 40
+//
+study("S&P 500 Market Breadth")
+
+dash_trans = 50
+h0 = hline(0, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h1 = hline(10, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h2 = hline(20, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h3 = hline(30, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h4 = hline(40, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h5 = hline(50, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h6 = hline(60, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h7 = hline(70, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h8 = hline(80, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h9 = hline(90, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h10 = hline(100, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+h11 = hline(110, color=color.new(color.black, dash_trans), linewidth=1, linestyle=hline.style_dashed)
+
+telcom = security("INDEX:SLTW", timeframe.period, close)
+discretionary = security("INDEX:SYTW", timeframe.period, close)
+staples = security("INDEX:SPTW", timeframe.period, close)
+energy = security("INDEX:SETW", timeframe.period, close)
+financials = security("INDEX:SFTW", timeframe.period, close)
+healthcare = security("INDEX:SVTW", timeframe.period, close)
+industry = security("INDEX:SITW", timeframe.period, close)
+materials = security("INDEX:SBTW", timeframe.period, close)
+reits = security("INDEX:SSTW", timeframe.period, close)
+tech = security("INDEX:SKTW", timeframe.period, close)
+utility = security("INDEX:SUTW", timeframe.period, close)
+
+total = telcom + discretionary + staples + energy + financials + healthcare + industry + materials + reits + tech + utility
+totalPercent = total / 11
+
+colorFill(v) => v >=0 and v < 5 ? color.new(#fc4e2a, 0): v >= 5 and v<10 ? color.new(#fc4e2a, 9) :
+          v >= 10 and v<15 ? color.new(#fc4e2a, 18) : v >= 15 and v<20 ? color.new(#fc4e2a, 27) :
+          v >= 20 and v<25 ? color.new(#fc4e2a, 36) : v >= 25 and v<30 ? color.new(#fc4e2a, 45) :
+          v >= 30 and v<35 ? color.new(#fc4e2a, 54) : v >= 35 and v<40 ? color.new(#fc4e2a, 63) :
+          v >= 40 and v<45 ? color.new(#fc4e2a, 72) : v >= 45 and v<50 ? color.new(#fc4e2a, 81) :
+          v >= 50 and v<55 ? color.new(#41ae76, 81) : v >= 55 and v<60 ? color.new(#41ae76, 72) :
+          v >= 60 and v<65 ? color.new(#41ae76, 63) : v >= 65 and v<70 ? color.new(#41ae76, 54) :
+          v >= 70 and v<75 ? color.new(#41ae76, 45) : v >= 75 and v<80 ? color.new(#41ae76, 36) :
+          v >= 80 and v<85 ? color.new(#41ae76, 27) : v >= 85 and v<90 ? color.new(#41ae76, 18) :
+          v >= 90 and v<95 ? color.new(#41ae76, 9) : v >= 95 and v<=100 ? color.new(#41ae76, 0) : #525252
+
+fontColor(t) => t >=0 and t <= 10 ? color.new(#a50f15, 0): t >= 80 ? color.new(#41ae76, 0) : #fb6a4a
+
+// total
+r12y1 = plot(110, color=na)
+r12y2 = plot(120, color=na)
+// telcom
+r11y1 = plot(100, color=na)
+r11y2 = plot(110, color=na)
+// discretionary
+r10y1 = plot(90, color=na)
+r10y2 = plot(100, color=na)
+// staples
+r9y1 = plot(80, color=na)
+r9y2 = plot(90, color=na)
+// energy
+r8y1 = plot(70, color=na)
+r8y2 = plot(80, color=na)
+// financials
+r7y1 = plot(60, color=na)
+r7y2 = plot(70, color=na)
+// healthcare
+r6y1 = plot(50, color=na)
+r6y2 = plot(60, color=na)
+// industry
+r5y1 = plot(40, color=na)
+r5y2 = plot(50, color=na)
+// material
+r4y1 = plot(30, color=na)
+r4y2 = plot(40, color=na)
+// reits
+r3y1 = plot(20, color=na)
+r3y2 = plot(30, color=na)
+// tech
+r2y1 = plot(10, color=na)
+r2y2 = plot(20, color=na)
+// utility
+r1y1 = plot(0,  color=na)
+r1y2 = plot(10, color=na)
+
+fill( r12y1, r12y2, color=colorFill(totalPercent), transp=10 )
+fill( r11y1, r11y2, color=colorFill(telcom), transp=10 )
+fill( r10y1, r10y2, color=colorFill(discretionary), transp=10 )
+fill( r9y1, r9y2, color=colorFill(staples), transp=10 )
+fill( r8y1, r8y2, color=colorFill(energy), transp=10)
+fill( r7y1, r7y2, color=colorFill(financials), transp=10 )
+fill( r6y1, r6y2, color=colorFill(healthcare), transp=10 )
+fill( r5y1, r5y2, color=colorFill(industry), transp=10 )
+fill( r4y1, r4y2, color=colorFill(materials), transp=10 )
+fill( r3y1, r3y2, color=colorFill(reits), transp=10 )
+fill( r2y1, r2y2, color=colorFill(tech), transp=10 )
+fill( r1y1, r1y2, color=colorFill(utility), transp=10)
+
+label_pos_x = round(timenow + 1000000000)
+
+drawLabel(x, y, _text, _textcolor, _size)=>
+    var label Label = na
+    label.delete(Label)
+    Label := label.new(x, y, _text, color=color.new(color.white, 20), textalign=text.align_left, textcolor=_textcolor, style=label.style_none, yloc=yloc.price, xloc=xloc.bar_time, size=_size)
+
+// draw the TF labels
+drawLabel(label_pos_x, 110, "Total: " + tostring(round(total)), color.black, size.normal)
+drawLabel(label_pos_x, 100, "COM " + tostring(telcom), fontColor(telcom), size.normal)
+drawLabel(label_pos_x, 90, "CND " + tostring(discretionary), fontColor(discretionary), size.normal)
+drawLabel(label_pos_x, 80, "CNS " + tostring(staples), fontColor(staples), size.normal)
+drawLabel(label_pos_x, 70, "ENE " + tostring(energy), fontColor(energy), size.normal)
+drawLabel(label_pos_x, 60, "FIN " + tostring(financials), fontColor(financials), size.normal)
+drawLabel(label_pos_x, 50, "HLT " + tostring(healthcare), fontColor(healthcare), size.normal)
+drawLabel(label_pos_x, 40, "IND " + tostring(industry), fontColor(industry), size.normal)
+drawLabel(label_pos_x, 30, "MAT " + tostring(materials), fontColor(materials), size.normal)
+drawLabel(label_pos_x, 20, "REI " + tostring(reits), fontColor(reits), size.normal)
+drawLabel(label_pos_x, 10, "TEC " + tostring(tech), fontColor(tech), size.normal)
+drawLabel(label_pos_x, 1, "UTL " + tostring(utility), fontColor(utility), size.normal)
