@@ -14,7 +14,7 @@
     1. [双均线 and 抵扣价](/futu#双均线pc版)
     2. [乖离率](/futu#gll-乖离率)
     3. [文件导入（已知：win支持）](/futu#文件导入)
-- [S&P500 Market Breadth from tradingview.com(市场宽度)](https://github.com/bankrollhunter/tradingview-scripts)
+- [S&P500 Market Breadth from tradingview.com(市场宽度)](/Market-Breadth)
 
 >自定义颜色可以参考下面的链接
 
